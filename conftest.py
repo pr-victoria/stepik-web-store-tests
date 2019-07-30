@@ -5,8 +5,8 @@ from selenium import webdriver
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or firefox")
-    parser.addoption('--language', action='store', default='ru',
-                     help="Choose user language (e.g. en, fr, etc.)")
+    parser.addoption('--language', action='store', default='en',
+                     help="Choose user language (e.g. ru, fr, etc.)")
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -16,6 +16,7 @@ def browser(request):
         print("\nstart chrome browser for test..")
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': language})
+        # options.add_experimental_option('detach', True)
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
