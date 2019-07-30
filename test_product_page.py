@@ -1,5 +1,6 @@
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
+from pages.cart_page import CartPage
 import time
 import pytest
 
@@ -39,7 +40,15 @@ def test_guest_should_see_login_link_on_product_page(browser):
 
 def test_guest_can_go_to_login_page_from_product_page(browser):
     prod_page = ProductPage(browser, product_link)
-    lpage = LoginPage(browser, product_link)
+    login_page = LoginPage(browser, product_link)
     prod_page.open()                      
     prod_page.go_to_login_page()       
-    lpage.should_be_login_page()
+    login_page.should_be_login_page()
+
+
+def test_guest_cant_see_product_in_cart_opened_from_product_page(browser):
+    prod_page = ProductPage(browser, product_link)
+    cart_page = CartPage(browser, product_link)
+    prod_page.open()
+    prod_page.go_to_cart_page()
+    cart_page.should_be_empty_cart()
