@@ -10,8 +10,8 @@ base_link = "http://selenium1py.pythonanywhere.com/"
 class TestLoginFromMainPage(object):
     def test_guest_can_go_to_login_page(self, browser):
         login_page = LoginPage(browser, base_link)
-        login_page.open()                      # открываем страницу
-        login_page.go_to_login_page()          # выполняем метод страницы - переходим на страницу логина
+        login_page.open()
+        login_page.go_to_login_page()
         login_page.should_be_login_page()
 
     def test_guest_should_see_login_link(self, browser):

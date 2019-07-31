@@ -2,7 +2,7 @@ from pages.locators import CartPageLocators
 from pages.base_page import BasePage
 
 
-class CartPage(BasePage): 
+class CartPage(BasePage):
     def should_not_be_products(self):
         assert self.is_not_element_present(*CartPageLocators.CART_ITEM), \
             "Product is presented, but should not be"
