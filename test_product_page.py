@@ -5,7 +5,7 @@ import time
 import pytest
 import faker
 
-link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
+link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/?promo=offer0"
 product_link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 
@@ -17,11 +17,10 @@ class TestUserAddToCartFromProductPage(object):
         reg_link = "http://selenium1py.pythonanywhere.com/accounts/login/"
         login_page = LoginPage(browser, reg_link)
         login_page.open()
-        login_page.register_new_user(f.email(), "12345pwd!")
+        login_page.register_new_user(f.email(), f.password())
         login_page.should_be_authorized_user()
 
-    @pytest.mark.need_review
-    @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+    '''@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                       "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                       "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
                                       "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
@@ -31,8 +30,9 @@ class TestUserAddToCartFromProductPage(object):
                                       pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7",
                                                    marks=pytest.mark.xfail(reason="bug")),
                                       "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-                                      "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
-    def test_user_can_add_product_to_cart(self, browser, link):
+                                      "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])'''
+    @pytest.mark.need_review
+    def test_user_can_add_product_to_cart(self, browser):
         prod_page = ProductPage(browser, link)
         prod_page.open()
         prod_page.add_product_to_cart()
@@ -45,8 +45,7 @@ class TestUserAddToCartFromProductPage(object):
         prod_page.should_not_be_success_message()
 
 
-@pytest.mark.need_review
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+'''@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
@@ -56,8 +55,11 @@ class TestUserAddToCartFromProductPage(object):
                                   pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7",
                                                marks=pytest.mark.xfail(reason="bug")),
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
-def test_guest_can_add_product_to_cart(browser, link):
+                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])'''
+
+
+@pytest.mark.need_review
+def test_guest_can_add_product_to_cart(browser):
     prod_page = ProductPage(browser, link)
     prod_page.open()
     prod_page.add_product_to_cart()

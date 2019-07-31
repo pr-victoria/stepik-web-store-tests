@@ -19,6 +19,7 @@ def browser(request):
         options = Options()
         options.add_experimental_option(
             'prefs', {'intl.accept_languages': language})
+        options.add_experimental_option('w3c', False)
         options.add_experimental_option('detach', True)
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
